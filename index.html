@@ -10,7 +10,7 @@
     <style>
         @font-face {
             font-family: 'KoniBlack';
-            src: url('./assets/fonts/Koniblack.otf') format('truetype');
+            src: url('./assets/fonts/Koniblack.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
         }
@@ -82,7 +82,9 @@
         }
 
         a {
-            text-decoration: none
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
         }
 
         .video-bg {
@@ -92,7 +94,7 @@
             top: 0;
             left: 0;
             object-fit: cover;
-            opacity: 0.5;
+            opacity: 0.4;
             z-index: 0;
         }
 
@@ -182,7 +184,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            background: #000 !important;
+            background: #000;
             color: #fff;
             position: relative;
         }
@@ -193,11 +195,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 4rem;
         }
 
         .contatti h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
             font-family: 'KoniBlack', sans-serif;
             background: linear-gradient(90deg, #ff003c, #ff8c00, #1f8201);
             background-clip: text;
@@ -220,6 +223,7 @@
             border-radius: 8px;
             font-size: 1rem;
             resize: none;
+            font-family: inherit;
         }
 
         .form-contatti button {
@@ -238,31 +242,87 @@
         }
 
         .footer {
-            flex: 4;
             background: #111;
-            display: flex;
+            display: block;
             align-items: center;
-            justify-content: center;
-            padding: 2rem 1rem;
         }
 
         .footer-content {
+            padding: 2rem 1rem;
             width: 100%;
             max-width: 1200px;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            gap: 2rem;
         }
 
         .footer-left,
-        .footer-right {
+        .footer-right,
+        .footer-center {
             flex: 1;
             min-width: 250px;
+            justify-items: center;
+        }
+
+        .footer-right ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-right ul li a {
+            color: #fff;
+            font-family: 'KoniBlack', sans-serif;
+            font-size: larger;
+        }
+
+        .footer-left p {
+            font-style: italic;
+            margin: 0 0 0.5rem 0;
         }
 
         .footer-logo {
-            width: 120px;
-            margin-bottom: 1rem;
+            width: 130px;
+            margin: -1rem 0 -1rem 0;
+        }
+
+        .socials {
+            display: grid;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .socials a {
+            display: inline-block;
+        }
+
+        .socials img {
+            width: 30px;
+            transition: 0.3s;
+        }
+
+        .socials img:hover {
+            transform: scale(1.1);
+        }
+
+        .credits {
+            background: black;
+            display: grid;
+            justify-items: center;
+            padding: 0.5rem;
+        }
+
+        .created-by {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+        }
+
+        .by {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
         }
 
         .header {
@@ -432,12 +492,22 @@
             }
 
             .footer-left,
-            .footer-right {
+            .footer-right,
+            .footer-center {
                 margin-bottom: 1rem;
+            }
+
+            .footer-left p {
+                font-style: italic;
+                margin: 0 0 0.5rem 0;
             }
 
             .form-contatti {
                 width: 85%;
+            }
+
+            .socials {
+                display: flex;
             }
         }
     </style>
@@ -783,7 +853,7 @@
             </div>
         </div>
     </header>
-    <video class="video-bg" src="video2.MOV" muted autoplay loop></video>
+    <video class="video-bg" src="/assets/video2.MOV" muted autoplay loop></video>
     <div class="section watch" id="hero">
         <div class="title">Dove i sogni diventano idee</div>
     </div>
@@ -793,7 +863,8 @@
     <div class="section watch">
         <div class="title">Dove gli eventi diventano emozioni!</div>
     </div>
-    <div class="section-eventi" id="eventi" <h2>E questa è la sezione eventi</h2>
+    <div class="section-eventi" id="eventi">
+        <h2>E questa è la sezione eventi</h2>
     </div>
     <div class="section-chi-siamo" id="chi-siamo">
         <h2>Il nostro team</h2>
@@ -801,28 +872,54 @@
     <div class="section-contatti-footer" id="contatti">
         <div class="contatti">
             <h2>Contattaci</h2>
-            <form class="form-contatti">
-                <input type="text" placeholder="Nome" required />
-                <input type="email" placeholder="Email" required />
-                <textarea placeholder="Messaggio" required></textarea>
+            <form class="form-contatti" action="mailto:city.fusi@gmail.com" method="POST" enctype="text/plain">
+                <input type="text" name="Nome" placeholder="Nome" required />
+                <input type="email" name="Email" placeholder="Email" required />
+                <textarea name="Messaggio" placeholder="Messaggio" required></textarea>
                 <button type="submit">Invia</button>
             </form>
+            <p style="font-size: 0.6rem; color: #aaa; margin-top: 1rem;">
+                Compilando il modulo accetti che i tuoi dati vengano utilizzati unicamente per essere ricontattato. 
+                Nessun dato verrà salvato o condiviso con terze parti.
+              </p>              
         </div>
+
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-left">
-                    <img src="./assets/logo.png" alt="Logo" class="footer-logo" />
+                    <h3>I nostri dati</h3>
+                    <img src="./assets/logo.svg" alt="Logo CityFusi" class="footer-logo" />
+                    <p>Associazione CityFusi</p>
                     <p>Codice Fiscale: 12345678901</p>
-                    <p>Email: cityfusi@email.com</p>
-                    <p>Telefono: +39 123 456 7890</p>
+                    <p>Email: <a href="mailto:city.fusi@gmail.com">city.fusi@gmail.com</a></p>
+                    <p>Telefono: +39 339 5912965</p>
+                </div>
+                <div class="footer-center">
+                    <h3>Ci trovi qui</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12514.859896885686!2d16.068035011517715!3d38.355578574278844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x131519ee89317df9%3A0xc1037ecb31dd8b07!2s89022%20Cittanova%20RC!5e0!3m2!1sit!2sit!4v1744148581884!5m2!1sit!2sit"
+                        width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="footer-right">
-                    <p>Created by Simone Condomitti</p>
-                    <p>&copy; 2025 CityFusi - Tutti i diritti riservati</p>
+                    <h3>Link Utili</h3>
+                    <div class="socials">
+                        <a href="https://www.facebook.com/p/City-Fusi-100090696105578/"><img src="./assets/ig.png"
+                                alt="Instagram" /></a>
+                        <a href="https://www.instagram.com/cityfusi/"><img src="./assets/fb.png" alt="Facebook" /></a>
+                        <a href="https://www.threads.net/@cityfusi"><img src="./assets/th.png" alt="Threads" /></a>
+                    </div>
+                    <p><a href="privacy.html" target="_blank">Privacy Policy</a></p>
                 </div>
+            </div>
+            <div class="credits">
+                <p class="created-by">Creato da Simone Condomitti</p>
+                <p class="by">&copy; 2025 CityFusi – Tutti i diritti riservati</p>
             </div>
         </footer>
     </div>
+
+
 
     <script>
         // elements
